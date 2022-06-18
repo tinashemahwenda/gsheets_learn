@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/homepage.dart';
+import 'package:gsheets/gsheets.dart';
 
-const creadentials = r'''
+const _credentials = r'''
       {
   "type": "service_account",
   "project_id": "ace-slice-243602",
@@ -19,7 +20,13 @@ const creadentials = r'''
 
 const _speadsheetId = '1v3SuQjLgnjr7ApLnYFTF--HL7MXX6STTlztsQ79TYOM';
 
-void main() => runApp(const MainApp());
+void main() async {
+  final gsheets = GSheets(_credentials);
+
+  final ss = gsheets.spreadsheet(_speadsheetId);
+
+  runApp(const MainApp());
+}
 
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
